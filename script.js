@@ -10,3 +10,35 @@ const getComputerChoice = () => {
 
   return choice;
 }
+
+const playRound = (playerSelection, computerSelection) => {
+  const playerChoice = playerSelection.toLowerCase();
+  const computerChoice = computerSelection.toLowerCase();
+  let message = null;
+
+  if (playerChoice === computerChoice) {
+    message = `Draw! Both selected ${playerChoice}`;
+  } else if (playerChoice === "paper") {
+    if (computerChoice === "rock") {
+      message = `You win! ${playerChoice} beats ${computerChoice}`;
+    } else {
+      message = `You lose! ${computerChoice} beats ${playerChoice}`;
+    }
+  } else if (playerChoice === "rock") {
+    if (computerChoice === "scissors") {
+      message = `You win! ${playerChoice} beats ${computerChoice}`;
+    } else {
+      message = `You lose! ${computerChoice} beats ${playerChoice}`;
+    }
+  } else if (playerChoice === "scissors") {
+    if (computerChoice === "paper") {
+      message = `You win! ${playerChoice} beats ${computerChoice}`;
+    } else {
+      message = `You lose! ${computerChoice} beats ${playerChoice}`;
+    }
+  } else {
+    message = 'You can only select between "Rock", "Paper", or "Scissors"';
+  }
+
+  return message;
+}
