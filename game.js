@@ -1,6 +1,6 @@
 const OPTIONS_CONTAINER = document.getElementById('options');
 
-const getComputerChoice = () => {
+export const getComputerChoice = () => {
   // Create an array that holds possible choices
   const choices = ['Rock', 'Paper', 'Scissors'];
 
@@ -15,7 +15,7 @@ const getComputerChoice = () => {
 
 const getPlayerChoice = () => {
   // Get input from user
-  const playerChoice = "Rock";
+  const playerChoice = prompt('Rock, Paper, or Scissors?');
 
   return playerChoice;
 }
@@ -58,16 +58,11 @@ const playRound = (playerSelection, computerSelection) => {
     }
   }
 
+  showRoundWinner(playerChoice, computerChoice, winner);
   return winner;
 }
 
-const startGame = () => {
-  OPTIONS_CONTAINER.innerHTML = `<button id="rock" value="rock" type="button">Rock</button><button id="paper" value="paper" type="button">Paper</button><button id="scissors" value="scissors" type="button">Scissors</button>`;
-}
-
 const game = () => {
-  startGame();
-
   // Keep track of scores
   let playerScore = 0;
   let computerScore = 0;
@@ -122,4 +117,4 @@ const showGameWinner = (playerScore, computerScore) => {
   console.log(message);
 }
 
-export default game;
+export default playRound;
