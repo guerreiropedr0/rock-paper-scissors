@@ -13,14 +13,6 @@ export const getComputerChoice = () => {
   return choice;
 }
 
-const getPlayerChoice = () => {
-  // Get input from user
-  const playerChoice = prompt('Rock, Paper, or Scissors?');
-
-  return playerChoice;
-}
-
-
 const getCapitalized = (word) => {
   const firstLetter = word.slice(0, 1);
   const remainingLetters = word.slice(1);
@@ -58,7 +50,7 @@ const playRound = (playerSelection, computerSelection) => {
     }
   }
 
-  showRoundWinner(playerChoice, computerChoice, winner);
+  updateScoreboard(winner);
   return winner;
 }
 
@@ -74,7 +66,7 @@ const game = () => {
 
     // Get round winner and show
     const roundWinner = playRound(playerChoice, computerChoice);
-    showRoundWinner(playerChoice, computerChoice, roundWinner);
+    updateScoreboard(roundWinner);
 
     // Update scores
     if (roundWinner) {
@@ -88,17 +80,20 @@ const game = () => {
   showGameWinner(playerScore, computerScore);
 }
 
-const showRoundWinner = (playerChoice, computerChoice, winner) => {
-  let message = null;
+const updateScoreboard = (winner) => {
+  const scoreBoard = document.querySelector('#scoreboard');
+  let playerScore = Number(scoreBoard.innerText[7]);
+  let computerScore = Number(scoreBoard.innerText[9]);
 
-  if (!winner) {
-    message = `Draw! Both selected ${playerChoice}`;
-  } else {
-    message = `${winner} won this round! ${playerChoice} vs ${computerChoice}`;
+  if (winner) {
+    if (winner === 'Player') {
+      playerScore++;
+    } else {
+      computerScore++;
+    }
   }
 
-  console.log(message);
-  return message;
+  scoreBoard.innerHTML = `<h1>Score: ${playerScore}-${computerScore}</h1>`;
 }
 
 const showGameWinner = (playerScore, computerScore) => {
