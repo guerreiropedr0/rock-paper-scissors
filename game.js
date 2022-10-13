@@ -1,5 +1,3 @@
-const OPTIONS_CONTAINER = document.getElementById('options');
-
 export const getComputerChoice = () => {
   // Create an array that holds possible choices
   const choices = ['Rock', 'Paper', 'Scissors'];
@@ -25,68 +23,43 @@ const playRound = (playerSelection, computerSelection) => {
   // Capitalize arguments for compatibility
   const playerChoice = getCapitalized(playerSelection);
   const computerChoice = getCapitalized(computerSelection);
-  let winner = null;
+  let roundWinner = null;
 
   // Game rules
   if (playerChoice === computerChoice) {
-    winner = null;
+    roundWinner = null;
   } else if (playerChoice === "Paper") {
     if (computerChoice === "Rock") {
-      winner = 'Player';
+      roundWinner = 'Player';
     } else {
-      winner = 'Computer';
+      roundWinner = 'Computer';
     }
   } else if (playerChoice === "Rock") {
     if (computerChoice === "Scissors") {
-      winner = 'Player';
+      roundWinner = 'Player';
     } else {
-      winner = 'Computer';
+      roundWinner = 'Computer';
     }
   } else if (playerChoice === "Scissors") {
     if (computerChoice === "Paper") {
-      winner = 'Player';
+      roundWinner = 'Player';
     } else {
-      winner = 'Computer';
+      roundWinner = 'Computer';
     }
   }
 
-  updateScoreboard(winner);
-  return winner;
+  console.log(roundWinner);
+  updateScoreboard(roundWinner);
+  return roundWinner;
 }
 
-const game = () => {
-  // Keep track of scores
-  let playerScore = 0;
-  let computerScore = 0;
-
-  // Play 5 rounds
-  for (let round = 0; round < 5; round++) {
-    const playerChoice = getPlayerChoice();
-    const computerChoice = getComputerChoice();
-
-    // Get round winner and show
-    const roundWinner = playRound(playerChoice, computerChoice);
-    updateScoreboard(roundWinner);
-
-    // Update scores
-    if (roundWinner) {
-      if (roundWinner === 'Player') {
-        playerScore++;
-      } else {
-        computerScore++;
-      }
-    }
-  }
-  showGameWinner(playerScore, computerScore);
-}
-
-const updateScoreboard = (winner) => {
+const updateScoreboard = (roundWinner) => {
   const scoreBoard = document.querySelector('#scoreboard');
   let playerScore = Number(scoreBoard.innerText[7]);
   let computerScore = Number(scoreBoard.innerText[9]);
 
-  if (winner) {
-    if (winner === 'Player') {
+  if (roundWinner) {
+    if (roundWinner === 'Player') {
       playerScore++;
     } else {
       computerScore++;
@@ -94,22 +67,41 @@ const updateScoreboard = (winner) => {
   }
 
   scoreBoard.innerHTML = `<h1>Score: ${playerScore}-${computerScore}</h1>`;
+
+  const gameWinner = checkGameWinner(playerScore, computerScore);
+
+  if (gameWinner) {
+    showGameWinner(gameWinner);
+    resetScoreboard();
+  }
 }
 
-const showGameWinner = (playerScore, computerScore) => {
-  let message = null;
+const resetScoreboard = () => {
+  const scoreBoard = document.querySelector('#scoreboard');
 
-  if (playerScore === computerScore) {
-    message = 'This game is a draw!';
-  } else if (playerScore > computerScore) {
-    message = 'The winner is the Player!'
-  } else {
-    message = 'The winner is the Computer';
+  scoreBoard.innerHTML = '<h1>Score: 0-0</h1>';
+}
+
+const checkGameWinner = (playerScore, computerScore) => {
+  let gameWinner = null;
+
+  if (playerScore >= 5) {
+    gameWinner = 'Player';
+  } else if (computerScore >= 5) {
+    gameWinner = 'Computer';
   }
 
-  message += ` Player score: ${playerScore} | Computer score: ${computerScore}`
+  return gameWinner;
+}
 
-  console.log(message);
+const showGameWinner = (gameWinner) => {
+  let message = null;
+
+  if (gameWinner) {
+    message = `${gameWinner} won the game!`;
+  }
+
+  alert(message);
 }
 
 export default playRound;
