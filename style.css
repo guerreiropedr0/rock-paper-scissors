@@ -39,6 +39,12 @@ body {
   transform: scale(1);
 }
 
+.round-info {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 @media screen and (max-width: 600px) {
   .options {
     flex-direction: column;

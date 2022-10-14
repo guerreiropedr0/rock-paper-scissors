@@ -48,15 +48,26 @@ const playRound = (playerSelection, computerSelection) => {
     }
   }
 
-  console.log(roundWinner);
+  showRoundWinner(roundWinner);
   updateScoreboard(roundWinner);
   return roundWinner;
 }
 
+const showRoundWinner = (roundWinner) => {
+  const ROUND_INFO = document.querySelector('#round-info');
+
+  if (roundWinner) {
+    ROUND_INFO.textContent = `${roundWinner} won!`;
+  } else {
+    ROUND_INFO.textContent = 'Draw!';
+  }
+
+}
+
 const updateScoreboard = (roundWinner) => {
-  const scoreBoard = document.querySelector('#scoreboard');
-  let playerScore = Number(scoreBoard.innerText[7]);
-  let computerScore = Number(scoreBoard.innerText[9]);
+  const SCOREBOARD = document.querySelector('#scoreboard');
+  let playerScore = Number(SCOREBOARD.innerText[7]);
+  let computerScore = Number(SCOREBOARD.innerText[9]);
 
   if (roundWinner) {
     if (roundWinner === 'Player') {
@@ -66,20 +77,30 @@ const updateScoreboard = (roundWinner) => {
     }
   }
 
-  scoreBoard.innerHTML = `<h1>Score: ${playerScore}-${computerScore}</h1>`;
+  SCOREBOARD.innerHTML = `<h1>Score: ${playerScore}-${computerScore}</h1>`;
 
   const gameWinner = checkGameWinner(playerScore, computerScore);
 
   if (gameWinner) {
     showGameWinner(gameWinner);
-    resetScoreboard();
+    resetGame();
   }
 }
 
-const resetScoreboard = () => {
-  const scoreBoard = document.querySelector('#scoreboard');
+const resetGame = () => {
+  resetScoreboard();
+  resetRoundInfo();
+}
 
-  scoreBoard.innerHTML = '<h1>Score: 0-0</h1>';
+const resetScoreboard = () => {
+  const SCOREBOARD = document.querySelector('#scoreboard');
+
+  SCOREBOARD.innerHTML = '<h1>Score: 0-0</h1>';
+}
+
+const resetRoundInfo = () => {
+  const ROUND_INFO = document.querySelector('#round-info');
+  ROUND_INFO.textContent = '';
 }
 
 const checkGameWinner = (playerScore, computerScore) => {
