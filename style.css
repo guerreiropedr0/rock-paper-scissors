@@ -14,9 +14,13 @@ body {
   color: #fff;
 }
 
-.scoreboard {
+.round-info {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .options {
@@ -37,12 +41,6 @@ body {
 
 .option:active {
   transform: scale(1);
-}
-
-.round-info {
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
 }
 
 @media screen and (max-width: 600px) {
