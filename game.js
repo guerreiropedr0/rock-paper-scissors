@@ -49,7 +49,7 @@ const playRound = (playerSelection, computerSelection) => {
   }
 
   showRoundWinner(roundWinner);
-  updateScoreboard(roundWinner);
+  updateRoundScoreboard(roundWinner);
   return roundWinner;
 }
 
@@ -64,7 +64,7 @@ const showRoundWinner = (roundWinner) => {
 
 }
 
-const updateScoreboard = (roundWinner) => {
+const updateRoundScoreboard = (roundWinner) => {
   const ROUND_SCORE = document.querySelector('#round-score');
   let playerScore = Number(ROUND_SCORE.innerText[7]);
   let computerScore = Number(ROUND_SCORE.innerText[9]);
@@ -88,11 +88,11 @@ const updateScoreboard = (roundWinner) => {
 }
 
 const resetGame = () => {
-  resetScoreboard();
+  resetRoundScoreboard();
   resetRoundInfo();
 }
 
-const resetScoreboard = () => {
+const resetRoundScoreboard = () => {
   const ROUND_SCORE = document.querySelector('#round-score');
 
   ROUND_SCORE.textContent = 'Score: 0-0';
