@@ -93,6 +93,7 @@ body {
   }
 
   .scoreboard {
-    display: none;
+    width: fit-content;
+    height: 150px;
   }
 }
