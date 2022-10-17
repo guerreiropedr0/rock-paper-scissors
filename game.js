@@ -1,6 +1,7 @@
 const SCOREBOARD = document.querySelector('#scoreboard');
 const ROUND_SCORE = document.querySelector('#round-score');
 const ROUND_WINNER = document.querySelector('#round-winner');
+const GAMES_WON = document.querySelector('#games-won');
 
 export const getComputerChoice = () => {
   // Create an array that holds possible choices
@@ -129,22 +130,49 @@ const updateScoreboard = () => {
   const PLAYER_SCORE = Number(ROUND_SCORE.innerText[7]);
   const COMPUTER_SCORE = Number(ROUND_SCORE.innerText[9]);
 
+  const ROW = createScoreBoardRow(PLAYER_SCORE, COMPUTER_SCORE, NUMBER_OF_GAMES);
 
-  SCOREBOARD.innerHTML += `<div class="scoreboard-item ${PLAYER_SCORE === 5 ? 'game-won' : 'game-lost'}">Game ${NUMBER_OF_GAMES}</div><div class="scoreboard-item">${PLAYER_SCORE}</div><div class="scoreboard-item">${COMPUTER_SCORE}</div>`;
+  // Insert nodes
+  ROW.forEach(element => {
+    SCOREBOARD.insertBefore(element, GAMES_WON);
+  })
 }
 
 const getGamesCount = () => {
   const SCOREBOARD_CHILDREN = SCOREBOARD.children.length;
 
-  // Subtract the initial 3 scoreboard childs (SCOREBOARD, COMPUTER, PLAYER)
-  let NUMBER_OF_GAMES = SCOREBOARD_CHILDREN - 2;
+  // Subtract the initial 6 scoreboard childs
+  // (SCOREBOARD, PLAYER, COMPUTER, GAMES WON)
+  let NUMBER_OF_GAMES = SCOREBOARD_CHILDREN - 5;
 
   // For every game we add, we add 2 more children (3 children) so divide by 3
-  if (SCOREBOARD_CHILDREN > 3) {
-    NUMBER_OF_GAMES = Math.ceil(NUMBER_OF_GAMES / 3);
-  }
+  NUMBER_OF_GAMES = Math.ceil(NUMBER_OF_GAMES / 3);
 
   return NUMBER_OF_GAMES;
+}
+
+const createScoreBoardRow = (playerScore, computerScore, gamesCount) => {
+  let row = [];
+
+  // Game number div
+  const GAME_NUMBER = document.createElement('div');
+  GAME_NUMBER.classList.add('scoreboard-item', `${playerScore === 5 ? 'game-won' : 'game-lost'}`);
+  GAME_NUMBER.textContent = `Game ${gamesCount}`;
+  row.push(GAME_NUMBER);
+
+  // Player score div
+  const PLAYER_DIV = document.createElement('div');
+  PLAYER_DIV.classList.add('scoreboard-item');
+  PLAYER_DIV.textContent = playerScore;
+  row.push(PLAYER_DIV);
+
+  // Computer score div
+  const COMPUTER_DIV = document.createElement('div');
+  COMPUTER_DIV.classList.add('scoreboard-item');
+  COMPUTER_DIV.textContent = computerScore;
+  row.push(COMPUTER_DIV);
+
+  return row;
 }
 
 export default playRound;

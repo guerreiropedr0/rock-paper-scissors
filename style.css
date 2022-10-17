@@ -76,6 +76,10 @@ body {
   border-right: 1px solid #fff;
 }
 
+#games-won {
+  background-color: #404040;
+}
+
 .game-won {
   background-color: #63a061;
 }
