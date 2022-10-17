@@ -91,4 +91,9 @@ body {
     flex-direction: column;
     align-items: center;
   }
+
+  .scoreboard {
+    width: fit-content;
+    height: 150px;
+  }
 }
