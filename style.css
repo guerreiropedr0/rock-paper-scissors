@@ -94,6 +94,6 @@ body {
 
   .scoreboard {
     width: fit-content;
-    height: 150px;
+    max-height: 150px;
   }
 }
