@@ -76,6 +76,14 @@ body {
   border-right: 1px solid #fff;
 }
 
+.game-won {
+  background-color: #63a061;
+}
+
+.game-lost {
+  background-color: #a06161;
+}
+
 
 @media screen and (max-width: 600px) {
   .options {

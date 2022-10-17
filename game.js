@@ -130,7 +130,7 @@ const updateScoreboard = () => {
   const COMPUTER_SCORE = Number(ROUND_SCORE.innerText[9]);
 
 
-  SCOREBOARD.innerHTML += `<div class="scoreboard-item">Game ${NUMBER_OF_GAMES}</div><div class="scoreboard-item">${PLAYER_SCORE}</div><div class="scoreboard-item">${COMPUTER_SCORE}</div>`;
+  SCOREBOARD.innerHTML += `<div class="scoreboard-item ${PLAYER_SCORE === 5 ? 'game-won' : 'game-lost'}">Game ${NUMBER_OF_GAMES}</div><div class="scoreboard-item">${PLAYER_SCORE}</div><div class="scoreboard-item">${COMPUTER_SCORE}</div>`;
 }
 
 const getGamesCount = () => {
