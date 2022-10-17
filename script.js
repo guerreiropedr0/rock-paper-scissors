@@ -1,8 +1,15 @@
-import game from './game.js';
+import playRound from "./game.js";
+import { getComputerChoice } from "./game.js";
 
-const START_GAME = document.getElementById('start');
+// Get rock, paper, scissors buttons
+const CHOICES = document.querySelectorAll('img');
 
-
-START_GAME.addEventListener('click', () => {
-  game();
-});
+// Loop through the choices array
+CHOICES.forEach(choice => {
+  // Every time the user clicks on the button play a round
+  choice.addEventListener('click', () => {
+    const playerChoice = choice.alt;
+    const computerChoice = getComputerChoice();
+    playRound(playerChoice, computerChoice);
+  })
+})

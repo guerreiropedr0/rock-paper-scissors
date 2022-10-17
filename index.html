@@ -4,11 +4,41 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
   <title>Rock Paper Scissors</title>
 </head>
 <body>
-  <button id="start">START GAME</button>
-  <div id="options"></div>
+  <div class="round-info">
+    <h1 id="round-score">Score: 0-0</h1>
+    <h3 id="round-winner"></h3>
+  </div>
+  <div class="options">
+    <img class="option" src="./assets/rock.png" alt="Rock">
+    <img class="option" src="./assets/paper.png" alt="Paper">
+    <img class="option" src="./assets/scissors.png" alt="Scissors">
+  </div>
+
+  <div id="scoreboard" class="scoreboard">
+    <div class="scoreboard-item">
+      <p>SCOREBOARD</p>
+    </div>
+    <div class="scoreboard-item">
+      <p>PLAYER</p>
+    </div>
+    <div class="scoreboard-item">
+      <p>COMPUTER</p>
+    </div>
+    <div id="games-won" class="scoreboard-item">
+      <p>GAMES WON</p>
+    </div>
+    <div class="scoreboard-item">
+      <p>0</p>
+    </div>
+    <div class="scoreboard-item">
+      <p>0</p>
+    </div>
+  </div>
+
   <script type="module" src="./script.js"></script>
 </body>
 </html>
