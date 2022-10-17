@@ -69,15 +69,12 @@ body {
 
 .scoreboard-item:nth-last-child(-n+3) {
   border-bottom: none;
+  background-color: #404040;
 }
 
 .scoreboard-item:nth-child(3n - 1) {
   border-left: 1px solid #fff;
   border-right: 1px solid #fff;
-}
-
-#games-won {
-  background-color: #404040;
 }
 
 .game-won {

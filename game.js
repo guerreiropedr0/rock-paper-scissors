@@ -136,6 +136,8 @@ const updateScoreboard = () => {
   ROW.forEach(element => {
     SCOREBOARD.insertBefore(element, GAMES_WON);
   })
+
+  updateGamesWon(ROW);
 }
 
 const getGamesCount = () => {
@@ -175,4 +177,21 @@ const createScoreBoardRow = (playerScore, computerScore, gamesCount) => {
   return row;
 }
 
+const updateGamesWon = (lastRow) => {
+  // Player and Computer all games won score
+  const PLAYER_DIV = GAMES_WON.nextElementSibling;
+  const COMPUTER_DIV = PLAYER_DIV.nextElementSibling;
+
+  let playerGamesWon = Number(PLAYER_DIV.textContent);
+  let computerGamesWon = Number(COMPUTER_DIV.textContent);
+  const PLAYER_SCORE = Number(lastRow[1].textContent);
+
+  if (PLAYER_SCORE === 5) {
+    playerGamesWon++;
+    PLAYER_DIV.innerText = playerGamesWon;
+  } else {
+    computerGamesWon++;
+    COMPUTER_DIV.innerText = computerGamesWon;
+  }
+}
 export default playRound;
